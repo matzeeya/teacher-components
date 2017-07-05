@@ -2,7 +2,9 @@
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-tabs/paper-tabs.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../iron-pages/iron-pages.html">
 <link rel="import" href="t-training.html">
 
 <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
@@ -95,21 +97,37 @@
         font-family: 'Itim', cursive;
         font-size: 120%;
       }
+      /* ---tabs---- */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: #F44336;
+        background-color: var(--paper-grey-50);
+        height: 40px;
+      }
     </style>
     <!--{{list.length}}-->
     <div class="flex-10 font-header center-layout">6. ประวัติการพัฒนา</div>
-    <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>
-    <div class="horizontal caption center-layout font-face-big-bold">
-      <div class="flex-3">ปี พ.ศ.</div>
-      <div class="flex-10">หน่วยงานที่จัดอบรม/สัมมนา</div>
-      <div class="flex-10">หัวข้อที่อบรม/สัมมนา</div>
-      <div class="flex-3">วันที่เริ่ม</div>
-      <div class="flex-3">วันที่สิ้นสุด</div>
-      <div class="flex-3">&nbsp;</div>
-    </div>  
-    <template is="dom-repeat" items="{{list}}">
-      <t-training content="{{item}}" on-t-training-remove="_removeItem"></t-training>
-    </template>
+    <paper-tabs selected="{{page}}" noink>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงการอบมรม/สัมมนา</div>
+        </paper-tab>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงรางวัลที่ได้รับ</div>
+        </paper-tab>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงผลงานสำคัญ</div>
+        </paper-tab>
+      </paper-tabs>
+      
+      <iron-pages selected="{{page}}"> 
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่มข้อมูล</paper-button> 
+          <template is="dom-repeat" items="{{list}}">
+            <t-training content="{{item}}" on-t-training-remove="_removeItem"></t-training>
+          </template>
+        </div>
+        <div>กำลังดำเนินการ</div>
+        <div>กำลังดำเนินการ</div>
+      </iron-pages>
   </template>
 
   <script>
@@ -122,6 +140,10 @@
           value:function() {
             return [];
           }
+        }, 
+        page: {
+          type: Number,
+          value: 0
         }
       },
       _addItem:function(event) {

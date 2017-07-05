@@ -105,15 +105,7 @@
     </style>
     <!--{{list.length}}-->
     <div class="flex-10 font-header center-layout">3. ประวัติการศึกษา</div>
-    <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>
-    <div class="horizontal caption center-layout font-face-big-bold">
-      <div class="flex-3">ปีที่จบ</div>
-      <div class="flex-5">ระดับการศึกษา</div>
-      <div class="flex-7">สาขาวิชา</div>
-      <div class="flex-10">สถานศึกษา</div>
-      <div class="flex-7">เพิ่มเติม</div>
-      <div class="flex-3">&nbsp;</div>  
-    </div>
+    <paper-button raised on-click="_addItem">+ เพิ่มข้อมูล</paper-button>
     <template is="dom-repeat" items="{{list}}">
       <t-education content="{{item}}" on-t-education-remove="_removeItem"></t-education>
     </template>

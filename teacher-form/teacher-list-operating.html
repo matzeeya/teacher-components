@@ -2,7 +2,9 @@
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-tabs/paper-tabs.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../iron-pages/iron-pages.html">
 <link rel="import" href="t-operating.html">
 
 <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
@@ -95,19 +97,41 @@
         font-family: 'Itim', cursive;
         font-size: 120%;
       }
+      /* ---tabs---- */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: #F44336;
+        background-color: var(--paper-grey-50);
+        height: 40px;
+      }
     </style>
     <!--{{list.length}}-->
     <div class="flex-10 font-header center-layout">5. ประวัติการปฏิบัติงาน</div>
-    <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>
-    <div class="horizontal caption center-layout font-face-big-bold">
-      <div class="flex-3">ปีการศึกษา</div>
-      <div class="flex-5">ภาคเรียนที่</div>
-      <div class="flex-5">ระดับชั้น/ห้อง</div>
-      <div class="flex-3">&nbsp;</div>
-    </div>       
-    <template is="dom-repeat" items="{{list}}">
-      <t-operating content="{{item}}" on-t-operating-remove="_removeItem"></t-operating>
-    </template>
+      <paper-tabs selected="{{page}}" noink>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงการประจำชั้น</div>
+        </paper-tab>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงจำนวนชั่วโมงที่สอนต่อสัปดาห์</div>
+        </paper-tab>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงตำแหน่งในโรงเรียน</div>
+        </paper-tab>
+        <paper-tab>
+          <div class="font-face-big-bold">ตารางแสดงงานพิเศษที่ได้รับมอบหมาย</div>
+        </paper-tab>
+      </paper-tabs>
+      
+      <iron-pages selected="{{page}}"> 
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่มข้อมูล</paper-button>       
+          <template is="dom-repeat" items="{{list}}">
+            <t-operating content="{{item}}" on-t-operating-remove="_removeItem"></t-operating>
+          </template>
+        </div>
+        <div>กำลังดำเนินการ</div>
+        <div>กำลังดำเนินการ</div>
+        <div>กำลังดำเนินการ</div>
+      </iron-pages>
   </template>
 
   <script>
@@ -120,6 +144,10 @@
           value:function() {
             return [];
           }
+        }, 
+        page: {
+          type: Number,
+          value: 0
         }
       },
       _addItem:function(event) {

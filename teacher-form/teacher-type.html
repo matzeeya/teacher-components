@@ -1,5 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 
@@ -41,31 +42,28 @@
         font-family: 'Itim', cursive;
         font-size: 120%;
       }
-    </style>    
-    
-    <paper-radio-group selected="{{value}}" 
-      class="flex"
-      aria-labelledby="label">
-      <paper-radio-button name="a">ข้าราชการครู</paper-radio-button>
-      <paper-radio-button name="b">ข้าราชการพลเรือนสามัญ</paper-radio-button>
-          <paper-radio-button name="c">พนักงานของรัฐ</paper-radio-button>
-          <paper-radio-button name="d">ลูกจ้างประจำ</paper-radio-button>
-          <paper-radio-button name="e">ลูกจ้างชั่วคราว</paper-radio-button>
-          <paper-radio-button name="f">อื่น ๆ</paper-radio-button>
+    </style>
+
+      <div class="horizontal">
+        <paper-radio-group selected="{{value}}" 
+          class="flex"
+          aria-labelledby="label">
+          <paper-radio-button name="a" class="font-face">ข้าราชการครู</paper-radio-button>
+          <paper-radio-button name="b" class="font-face">ข้าราชการพลเรือนสามัญ</paper-radio-button>
+          <paper-radio-button name="c" class="font-face">พนักงานของรัฐ</paper-radio-button>
+          <paper-radio-button name="d" class="font-face">ลูกจ้างประจำ</paper-radio-button>
+          <paper-radio-button name="e" class="font-face">ลูกจ้างชั่วคราว</paper-radio-button>
+          <paper-radio-button name="f" class="font-face">อื่น ๆ</paper-radio-button>
         </paper-radio-group>
-    
+      </div>
 
   </template>
 
   <script>
     Polymer({
       is: 'teacher-type',
-      properties: {        
-          content:Object
-      },
-      _removeItem:function(event) {
-        this.set('content.show',false);
-        this.fire('t-education-remove',{'obj':this});
+      properties: {
+
       }
     });
   </script>

@@ -96,18 +96,11 @@
         font-family: 'Itim', cursive;
         font-size: 120%;
       }
+      
     </style>
     <!--{{list.length}}-->
     <div class="flex-10 font-header center-layout">4. ประวัติการทำงาน</div>
-    <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>
-    <div class="horizontal caption center-layout font-face-big-bold">
-      <div class="flex-3">วันเดือนปี</div>
-      <div class="flex-5">ตำแหน่ง</div>
-      <div class="flex-5">ระดับ</div>
-      <div class="flex-10">หน่วยงานสังกัด</div>
-      <div class="flex-10">สาเหตุการปรับตำแหน่ง</div>
-      <div class="flex-3">&nbsp;</div>
-    </div>  
+    <paper-button raised on-click="_addItem">+ เพิ่มข้อมูล</paper-button>
     <template is="dom-repeat" items="{{list}}">
       <t-working content="{{item}}" on-t-working-remove="_removeItem"></t-working>
     </template>
