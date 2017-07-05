@@ -1,7 +1,8 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
 <link rel="import" href="teacher-type.html">
 <link rel="import" href="teacher-list-education.html">
 <link rel="import" href="teacher-list-working.html">
@@ -99,6 +100,7 @@
         font-size: 120%;
       }
     </style>
+    Hello [[prop1]]
     <div class="vertical">
       <div class="horizontal">
         <div class="flex-10 font-header center-layout">1. ข้อมูลทั่วไป</div>
@@ -122,19 +124,26 @@
       <div class="horizontal">
         <teacher-type></teacher-type>  
       </div>
-        <teacher-list-education></teacher-list-education>
-        <teacher-list-working></teacher-list-working>   
-        <teacher-list-operating></teacher-list-operating>
-        <teacher-list-training></teacher-list-training>      
+      <teacher-list-education></teacher-list-education>
+      <teacher-list-working></teacher-list-working>   
+      <teacher-list-operating></teacher-list-operating>
+      <teacher-list-training></teacher-list-training>      
     </div>
   </template>
 
   <script>
-    Polymer({
-      is: 'teacher-form',
-      properties: {
-
+    class TeacherForm extends Polymer.Element {
+      static get is() { return 'teacher-form';}
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'teachers'
+          }
+        };
       }
-    });
+    }
+
+    window.customElements.define(TeacherForm.is,TeacherForm);
   </script>
 </dom-module>
