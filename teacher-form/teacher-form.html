@@ -21,6 +21,7 @@
         display: block;
         box-sizing: border-box;
       }
+
       .margin-left-style{
         margin-left:5px;
       }
@@ -40,7 +41,7 @@
 
     <div class="layout vertical">
       <div class="layout horizontal">
-        <div class="flex font-header">1. ข้อมูลทั่วไป</div>
+        <div class="font-header layout center">1. ข้อมูลทั่วไป</div>
       </div>
       <div class="layout horizontal">
         <paper-input class="flex" label="หมายเลขบัตรประชาชน" value="{{cid}}"></paper-input>
@@ -56,11 +57,17 @@
         <div class="flex-7 margin-left-style"><paper-input label="นามสกุล" value="{{lname}}"></paper-input></div>
       </div>
       <div class="layout horizontal">
-        <div class="flex-6"><paper-input label="โรงเรียน" value="{{school}}"></paper-input></div>
-        <div class="flex-5 margin-left-style"><paper-input label="จังหวัด" value="{{province}}"></paper-input></div>
+
+        <div class="flex-7"><paper-input label="โรงเรียน" value="{{school}}"></paper-input></div>
+        <div class="flex-3"><paper-input label="จังหวัด" value="{{province}}"></paper-input></div>
       </div>
 
+      <div class="layout horizontal">
+        <div class="flex font-header center-layout">2. ประเภทบุคลากร</div>
+      </div>
+      <div class="layout horizontal">
         <teacher-type></teacher-type>  
+      </div>
         <teacher-list-education></teacher-list-education>
         <teacher-list-working></teacher-list-working>   
         <teacher-list-operating></teacher-list-operating>
@@ -75,10 +82,10 @@
       static get is() { return 'teacher-form';}
       static get properties() {
         return {
-          prop1: {
+          /*prop1: {
             type: String,
             value: 'teachers'
-          }
+          }*/
         };
       }
     }
