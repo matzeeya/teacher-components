@@ -1,0 +1,53 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+
+<dom-module id="teacher-per-student">
+ <template>
+     <style>
+        google-chart {
+          height: 300px;
+          width: 50em;
+        }
+      </style>
+      Charts
+    <google-chart
+      type='pie'
+      options='{"title": "Distribution of days in 2001Q1"}'
+      cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+      rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+    </google-chart>
+ </template>
+ <script>
+   class TeacherPerStudent extends Polymer.Element {
+     static get is() {
+       return 'teacher-per-student';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherPerStudent.is,TeacherPerStudent);
+ </script>
+</dom-module>

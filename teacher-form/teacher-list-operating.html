@@ -11,91 +11,23 @@
 
 <dom-module id="teacher-list-operating">
   <template>
-    <style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors">
       :host {
         display: block;
         box-sizing: border-box;
       }
-      .center-layout{
-        @apply(--layout-center);
-        @apply(--layout); 
-        /*@apply(--layout-center-justified);*/
-      }
-      .horizontal {
-        @apply(--layout-horizontal);
-      }
-      .vertical {
-        @apply(--layout-vertical);
-      }
-      .flex-3 {
-        @apply(--layout-flex-3); 
-      }
-      .flex-5 {
-        @apply(--layout-flex-5); 
-      }
-      .flex-7 {
-        @apply(--layout-flex-7); 
-      }
-      .flex-10 {
-        @apply(--layout-flex-10); 
-      } 
-      .header {
-        @apply(--paper-font-caption);
-        background-color: #F44336;
-        text-align:left;
-        color: #fff;
-        opacity: 0.87;
-        height:56px;
-      }
-      .caption {
-        @apply(--paper-font-title);
-        text-align:left;
-        color: #000;
-        opacity: 0.64;
-        height:64px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .content {
-        @apply(--paper-font-menu);
-        text-align:left;
-        color: #000;
-        opacity: 0.87;
-        height:48px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .margin-left-style{
-        margin-left:24px;
-      }
-      .margin-right-style{
-        margin-right:24px;
-      }
-      .shadow {
-        @apply(--shadow-elevation-2dp);
-      }
+      /* ---font---- */
       .font-header {
         font-family: 'Itim', cursive;
         font-size: 120%;
         font-weight: bold;
-        height:48px;
-      }
-    /* ---font---- */
-      .font-face-big {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        text-decoration: underline;
+        height:30px;
+        margin-top: 10px;
       }
       .font-face-big-bold {
         font-family: 'Itim', cursive;
         font-size: 100%;
         font-weight: bold;
-      }
-      .font-face {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
       }
       /* ---tabs---- */
       paper-tabs {
@@ -105,7 +37,7 @@
       }
     </style>
     <!--{{list.length}}-->
-    <div class="flex-10 font-header center-layout">5. ประวัติการปฏิบัติงาน</div>
+    <div class="flex font-header">5. ประวัติการปฏิบัติงาน</div>
       <paper-tabs selected="{{page}}" noink>
         <paper-tab>
           <div class="font-face-big-bold">ตารางแสดงการประจำชั้น</div>
@@ -120,12 +52,11 @@
           <div class="font-face-big-bold">ตารางแสดงงานพิเศษที่ได้รับมอบหมาย</div>
         </paper-tab>
       </paper-tabs>
-      
       <iron-pages selected="{{page}}"> 
         <div>
-          <paper-button raised on-click="_addItem">+ เพิ่มข้อมูล</paper-button>       
+          <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
           <template is="dom-repeat" items="{{list}}">
-            <t-operating content="{{item}}" on-t-operating-remove="_removeItem"></t-operating>
+            <t-operating content="{{item}}" page={{page}} on-t-operating-remove="_removeItem"></t-operating>
           </template>
         </div>
         <div>กำลังดำเนินการ</div>

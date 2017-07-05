@@ -1,7 +1,11 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+<!--<link rel="import" href="../teacher-query.html">
+<link rel="import" href="../charts/teacher-per-student.html">-->
+
 <link rel="import" href="teacher-type.html">
 <link rel="import" href="teacher-list-education.html">
 <link rel="import" href="teacher-list-working.html">
@@ -12,130 +16,73 @@
 
 <dom-module id="teacher-form">
   <template>
-    <style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors">
       :host {
         display: block;
         box-sizing: border-box;
       }
-      .center-layout{
-        @apply(--layout-center);
-        @apply(--layout); 
-        /*@apply(--layout-center-justified);*/
-      }
-      .horizontal {
-        @apply(--layout-horizontal);
-      }
-      .vertical {
-        @apply(--layout-vertical);
-      }
-      .flex-3 {
-        @apply(--layout-flex-3); 
-      }
-      .flex-5 {
-        @apply(--layout-flex-5); 
-      }
-      .flex-7 {
-        @apply(--layout-flex-7); 
-      }
-      .flex-10 {
-        @apply(--layout-flex-10); 
-      } 
-      .header {
-        @apply(--paper-font-caption);
-        background-color: #F44336;
-        text-align:left;
-        color: #fff;
-        opacity: 0.87;
-        height:56px;
-      }
-      .caption {
-        @apply(--paper-font-title);
-        text-align:left;
-        color: #000;
-        opacity: 0.64;
-        height:64px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .content {
-        @apply(--paper-font-menu);
-        text-align:left;
-        color: #000;
-        opacity: 0.87;
-        height:48px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
       .margin-left-style{
-        margin-left:24px;
+        margin-left:5px;
       }
-      .margin-right-style{
-        margin-right:24px;
-      }
-      .shadow {
-        @apply(--shadow-elevation-2dp);
-      }
+    /* ---font---- */
       .font-header {
         font-family: 'Itim', cursive;
         font-size: 120%;
         font-weight: bold;
-        height:48px;
-      }
-    /* ---font---- */
-      .font-face-big {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        text-decoration: underline;
-      }
-      .font-face-big-bold {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        font-weight: bold;
-      }
-      .font-face {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
+        height:20px;
       }
     </style>
-    <div class="vertical">
-      <div class="horizontal">
-        <div class="flex-10 font-header center-layout">1. ข้อมูลทั่วไป</div>
+    <!--Hello [[prop1]]
+    <teacher-query doc-id="00047c3002f011e7bdddf9ed08992430"
+      document="{{doc}}">
+    </teacher-query>
+    <teacher-per-student></teacher-per-student>-->
+
+    <div class="layout vertical">
+      <div class="layout horizontal">
+        <div class="flex font-header">1. ข้อมูลทั่วไป</div>
       </div>
-      <div class="horizontal">
-        <div class="flex-10"><paper-input label="หมายเลขบัตรประชาชน" value="{{cid}}"></paper-input></div>
+      <div class="layout horizontal">
+        <paper-input class="flex" label="หมายเลขบัตรประชาชน" value="{{cid}}"></paper-input>
       </div>
-      <div class="horizontal">
-        <div class="flex-3"><paper-input label="คำนำหน้า" value="{{tname}}"></paper-input></div>
-        <div class="flex-5"><paper-input label="ชื่อ" value="{{fname}}"></paper-input></div>
-        <div class="flex-7"><paper-input label="นามสกุล" value="{{lname}}"></paper-input></div>
+      <div class="layout horizontal">
+        <div class="flex-3"><paper-input label="คำนำหน้า" 
+          value="{{doc.Title}}"></paper-input></div>
+        <div class="flex-5 margin-left-style">
+          <paper-input label="ชื่อ" 
+             value="{{doc.Firstname}}">
+          </paper-input>
+        </div>
+        <div class="flex-7 margin-left-style"><paper-input label="นามสกุล" value="{{lname}}"></paper-input></div>
       </div>
-      <div class="horizontal">
-        <div class="flex-7"><paper-input label="โรงเรียน" value="{{school}}"></paper-input></div>
-        <div class="flex-3"><paper-input label="จังหวัด" value="{{province}}"></paper-input></div>
+      <div class="layout horizontal">
+        <div class="flex-6"><paper-input label="โรงเรียน" value="{{school}}"></paper-input></div>
+        <div class="flex-5 margin-left-style"><paper-input label="จังหวัด" value="{{province}}"></paper-input></div>
       </div>
 
-      <div class="horizontal">
-        <div class="flex-10 font-header center-layout">2. ประเภทบุคลากร</div>
-      </div>
-      <div class="horizontal">
         <teacher-type></teacher-type>  
-      </div>
         <teacher-list-education></teacher-list-education>
-        
         <teacher-list-working></teacher-list-working>   
         <teacher-list-operating></teacher-list-operating>
         <teacher-list-training></teacher-list-training>     
+
     </div>
   </template>
 
   <script>
-    Polymer({
-      is: 'teacher-form',
-      properties: {
-       
+
+    class TeacherForm extends Polymer.Element {
+      static get is() { return 'teacher-form';}
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'teachers'
+          }
+        };
       }
-    });
+    }
+
+    window.customElements.define(TeacherForm.is,TeacherForm);
   </script>
 </dom-module>
