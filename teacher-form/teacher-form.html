@@ -1,10 +1,10 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 
-<!--<link rel="import" href="../teacher-query.html">
-<link rel="import" href="../charts/teacher-per-student.html">-->
+<link rel="import" href="../teacher-query.html">
 
 <link rel="import" href="teacher-type.html">
 <link rel="import" href="teacher-list-education.html">
@@ -33,11 +33,11 @@
         height:20px;
       }
     </style>
-    <!--Hello [[prop1]]
-    <teacher-query doc-id="00047c3002f011e7bdddf9ed08992430"
+    <teacher-query doc-id="4818e800617111e7a88349361eb0cdc5"
+      id="teacherDoc"
       document="{{doc}}">
     </teacher-query>
-    <teacher-per-student></teacher-per-student>-->
+    <paper-button on-click="save" raised>Save</paper-button>
 
     <div class="layout vertical">
       <div class="layout horizontal">
@@ -66,12 +66,12 @@
         <div class="flex font-header center-layout">2. ประเภทบุคลากร</div>
       </div>
       <div class="layout horizontal">
-        <teacher-type></teacher-type>  
+        <teacher-type value="{{doc.employment_type}}"></teacher-type>  
       </div>
-        <teacher-list-education></teacher-list-education>
-        <teacher-list-working></teacher-list-working>   
-        <teacher-list-operating></teacher-list-operating>
-        <teacher-list-training></teacher-list-training>     
+      <teacher-list-education></teacher-list-education>
+      <teacher-list-working></teacher-list-working>   
+      <teacher-list-operating></teacher-list-operating>
+      <teacher-list-training></teacher-list-training>     
 
     </div>
   </template>
@@ -87,6 +87,10 @@
             value: 'teachers'
           }*/
         };
+      }
+      
+      save() {
+        this.$.teacherDoc.save();
       }
     }
 

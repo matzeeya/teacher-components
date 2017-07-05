@@ -1,17 +1,14 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <dom-module id="teacher-query">
  <template>
-   <paper-input label="token" value="{{token}}"></paper-input>
-   <paper-button on-click="click" raised>Click</paper-button>
-   <iron-ajax  
-     id="getAjax"
-     method="GET"
-     handle-as="json"
-     on-response="_handleResponse">
+   <app-localstorage-document key="token" data="{{token}}">
+   </app-localstorage-document>
+   <iron-ajax  id="getAjax" method="GET" handle-as="json">
+   </iron-ajax>
+   <iron-ajax  id="saveAjax" method="POST" handle-as="json">
    </iron-ajax>
  </template>
 
@@ -37,17 +34,40 @@
        }
      }
 
-     _handleResponse(event) {
-       this.set('document',event.detail.response);
+     static get observers() {
+       return [
+         '_getDocument(token,docId)'
+       ];
      }
-     
-     click() {
-       this.$.getAjax.url = 'https://maas.nuqlis.com:9000/api/dbs/teacher_db/'+this.docId;
+
+     _getDocument(token,docId) {
+       if(token == null || docId == null) return;
+       this.$.getAjax.url = 'https://maas.nuqlis.com:9000/api/dbs/teacher_db/'+docId;
        this.$.getAjax.headers = {
-         'Authorization':'JWT '+this.token
+         'Authorization':'JWT '+token.token
        };
        this.$.getAjax.generateRequest();
+       var _self = this;
+       this.$.getAjax.addEventListener('response',function(event) {
+         _self.set('document',event.detail.response);
+       });
      }
+   
+     save() {
+       this.$.saveAjax.url = 'https://maas.nuqlis.com:9000/api/dbs/teacher_db/'+this.docId;
+       this.$.saveAjax.headers = {
+         'Authorization':'JWT '+this.token.token,
+         'Content-Type':'application/json'
+       };
+       this.$.saveAjax.body = this.document;
+       this.$.saveAjax.generateRequest();
+       var _self = this;
+       this.$.saveAjax.addEventListener('response',function(event) {
+         console.log(event);
+         // _self.set('document',event.detail.response);
+       });
+     }
+
    }
    
    customElements.define(TeacherQuery.is,TeacherQuery);
