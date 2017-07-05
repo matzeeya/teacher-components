@@ -1,0 +1,153 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="t-education.html">
+
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
+<dom-module id="teacher-list-education">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+      .center-layout{
+        @apply(--layout-center);
+        @apply(--layout); 
+        /*@apply(--layout-center-justified);*/
+      }
+      .horizontal {
+        @apply(--layout-horizontal);
+      }
+      .vertical {
+        @apply(--layout-vertical);
+      }
+      .flex-2 {
+        @apply(--layout-flex-2); 
+      }
+      .flex-3 {
+        @apply(--layout-flex-3); 
+      }
+      .flex-5 {
+        @apply(--layout-flex-5); 
+      }
+      .flex-7 {
+        @apply(--layout-flex-7); 
+      }
+      .flex-8 {
+        @apply(--layout-flex-8); 
+      }
+      .flex-10 {
+        @apply(--layout-flex-10); 
+      } 
+      .header {
+        @apply(--paper-font-caption);
+        background-color: #F44336;
+        text-align:left;
+        color: #fff;
+        opacity: 0.87;
+        height:56px;
+      }
+      .caption {
+        @apply(--paper-font-title);
+        text-align:left;
+        color: #000;
+        opacity: 0.64;
+        height:64px;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color: var(--divider-color);
+      }
+      .content {
+        @apply(--paper-font-menu);
+        text-align:left;
+        color: #000;
+        opacity: 0.87;
+        height:48px;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color: var(--divider-color);
+      }
+      .margin-left-style{
+        margin-left:24px;
+      }
+      .margin-right-style{
+        margin-right:24px;
+      }
+      .shadow {
+        @apply(--shadow-elevation-2dp);
+      }
+      .font-header {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        font-weight: bold;
+        height:48px;
+      }
+    /* ---font---- */
+      .font-face-big {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        text-decoration: underline;
+      }
+      .font-face-big-bold {
+        font-family: 'Itim', cursive;
+        font-size: 100%;
+        font-weight: bold;
+      }
+      .font-face {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+      }
+    </style>
+    <!--{{list.length}}-->
+    <div class="flex-10 font-header center-layout">3. ประวัติการศึกษา</div>
+    <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>
+    <div class="horizontal caption center-layout font-face-big-bold">
+      <div class="flex-3">ปีที่จบ</div>
+      <div class="flex-5">ระดับการศึกษา</div>
+      <div class="flex-7">สาขาวิชา</div>
+      <div class="flex-10">สถานศึกษา</div>
+      <div class="flex-7">เพิ่มเติม</div>
+      <div class="flex-3">&nbsp;</div>  
+    </div>
+    <template is="dom-repeat" items="{{list}}">
+      <t-education content="{{item}}" on-t-education-remove="_removeItem"></t-education>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'teacher-list-education',
+      properties: {
+        list : {
+          type:Array,
+          notify:true,
+          value:function() {
+            return [];
+          }
+        }
+      },
+      _addItem:function(event) {
+        this.push('list',{'show':true});
+      },
+      _removeItem:function(event) {
+        console.log('_removeItem');
+        //var _splice = false;
+        //while(!_splice) {
+        //  _splice = true;
+          for(var i=0;i<this.list.length;i++) {
+            if(this.list[i].show == false) {
+        //      _splice = false;              
+              this.splice('list',i,1);              
+              break;
+            }
+          }
+        //}
+      }
+    });
+  </script>
+</dom-module>

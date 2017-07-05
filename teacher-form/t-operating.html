@@ -1,0 +1,120 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
+<dom-module id="t-operating">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+      .center-layout{
+        @apply(--layout-center);
+        @apply(--layout); 
+        /*@apply(--layout-center-justified);*/
+      }
+      .horizontal {
+        @apply(--layout-horizontal);
+      }
+      .vertical {
+        @apply(--layout-vertical);
+      }
+      .flex-3 {
+        @apply(--layout-flex-3); 
+      }
+      .flex-5 {
+        @apply(--layout-flex-5); 
+      }
+      .flex-7 {
+        @apply(--layout-flex-7); 
+      }
+      .flex-10 {
+        @apply(--layout-flex-10); 
+      } 
+      .header {
+        @apply(--paper-font-caption);
+        text-align:left;
+        color: #000;
+        opacity: 0.64;
+        height:56px;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color: var(--divider-color);
+      }
+      .caption {
+        @apply(--paper-font-title);
+        text-align:left;
+        color: #000;
+        opacity: 0.64;
+        height:64px;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color: var(--divider-color);
+      }
+      .content {
+        @apply(--paper-font-menu);
+        text-align:left;
+        color: #000;
+        opacity: 0.87;
+        height:52px;
+        border-bottom-width:1px;
+        border-bottom-style:solid;
+        border-bottom-color: var(--divider-color);
+      }
+      .margin-left-style{
+        margin-left:24px;
+      }
+      .margin-right-style{
+        margin-right:24px;
+      }
+      .shadow {
+        @apply(--shadow-elevation-2dp);
+      }
+    /* ---font---- */
+      .font-face-big {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        text-decoration: underline;
+      }
+      .font-face-big-bold {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        font-weight: bold;
+      }
+      .font-face {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+      }
+    </style>    
+    
+    <div class="vertical" hidden$="{{!content.show}}">
+        <div class="horizontal content">
+          <div class="flex-3"><paper-input label="ปีการศึกษา"></paper-input></div>
+          <div class="flex-5"><paper-input label="ภาคเรียนที่"></paper-input></div>
+          <div class="flex-5"><paper-input label="ระดับชั้น/ห้อง"></paper-input></div>
+          <div class="flex-3">
+            <paper-icon-button icon="icons:delete"  on-click="_removeItem"></paper-icon-button>
+          </div>  
+        </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 't-operating',
+      properties: {        
+          content:Object
+      },
+      _removeItem:function(event) {
+        this.set('content.show',false);
+        this.fire('t-operating-remove',{'obj':this});
+      }
+    });
+  </script>
+</dom-module>

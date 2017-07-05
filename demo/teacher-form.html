@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>teacher-components demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../teacher-form/teacher-form.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container">
+      <h3>แบบเก็บข้อมูลครู</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <div class="layout horizontal">
+            <div class="flex">
+              <teacher-form></teacher-form>
+            </div>
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

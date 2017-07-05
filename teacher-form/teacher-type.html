@@ -1,0 +1,72 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
+<dom-module id="teacher-type">
+  <template>
+    <style>
+      .horizontal {
+        @apply(--layout-horizontal);
+      }
+      .vertical {
+        @apply(--layout-vertical);
+      }
+      .flex-3 {
+        @apply(--layout-flex-3); 
+      }
+      .flex-5 {
+        @apply(--layout-flex-5); 
+      }
+      .flex-7 {
+        @apply(--layout-flex-7); 
+      }
+      .flex-10 {
+        @apply(--layout-flex-10); 
+      } 
+    /* ---font---- */
+      .font-face-big {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        text-decoration: underline;
+      }
+      .font-face-big-bold {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+        font-weight: bold;
+      }
+      .font-face {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+      }
+    </style>    
+    
+    <paper-radio-group selected="{{value}}" 
+      class="flex"
+      aria-labelledby="label">
+      <paper-radio-button name="a">ข้าราชการครู</paper-radio-button>
+      <paper-radio-button name="b">ข้าราชการพลเรือนสามัญ</paper-radio-button>
+          <paper-radio-button name="c">พนักงานของรัฐ</paper-radio-button>
+          <paper-radio-button name="d">ลูกจ้างประจำ</paper-radio-button>
+          <paper-radio-button name="e">ลูกจ้างชั่วคราว</paper-radio-button>
+          <paper-radio-button name="f">อื่น ๆ</paper-radio-button>
+        </paper-radio-group>
+    
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'teacher-type',
+      properties: {        
+          content:Object
+      },
+      _removeItem:function(event) {
+        this.set('content.show',false);
+        this.fire('t-education-remove',{'obj':this});
+      }
+    });
+  </script>
+</dom-module>
