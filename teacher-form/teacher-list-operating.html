@@ -56,7 +56,7 @@
         <div>
           <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
           <template is="dom-repeat" items="{{list}}">
-            <t-operating content="{{item}}" page={{page}} on-t-operating-remove="_removeItem"></t-operating>
+            <t-operating content="{{item}}" on-t-operating-remove="_removeItem"></t-operating>
           </template>
         </div>
         <div>กำลังดำเนินการ</div>

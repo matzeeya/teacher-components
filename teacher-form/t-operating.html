@@ -30,7 +30,6 @@
       }
     </style>    
     
-    <template is="dom-if" if="{{user.isAdmin}}">
     <div class="layout vertical" hidden$="{{!content.show}}">
         <div class="layout horizontal">
           <div class="flex-3 margin-left-style"><paper-input label="ปีการศึกษา"></paper-input></div>
@@ -41,7 +40,6 @@
           </div>  
         </div>
     </div>
-    </template>
   </template>
 
   <script>
@@ -49,18 +47,10 @@
       is: 't-operating',
       properties: {        
           content:Object,
-          chkPage:{
-            type:String,
-            notify:true,
-            computed:'__Page(page)'
-          }
       },
       _removeItem:function(event) {
         this.set('content.show',false);
         this.fire('t-operating-remove',{'obj':this});
-      },
-      __Page(page){
-        console.log(page);
       }
     });
   </script>
