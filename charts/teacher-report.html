@@ -1,0 +1,61 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+<link rel="import" href="teacher-per-student.html">
+<link rel="import" href="teacher-education.html">
+<link rel="import" href="teacher-type-report.html">
+<link rel="import" href="teacher-age.html">
+
+<dom-module id="teacher-report">
+  <template>
+  <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors">
+     :host {
+        display: block;
+        box-sizing: border-box;
+      }
+  </style>
+    <div class="layout vertical">
+      <div class="layout horizontal">
+        <div class="flex-5"><teacher-age></teacher-age></div>
+        <div class="flex-5"><teacher-type-report></teacher-type-report></div>
+      </div>
+       <div class="layout horizontal">
+        <teacher-education></teacher-education>
+      </div>
+    </div>
+  </template>
+ <script>
+   class TeacherReport extends Polymer.Element {
+     static get is() {
+       return 'teacher-report';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherReport.is,TeacherReport);
+ </script>
+</dom-module>
