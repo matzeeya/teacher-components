@@ -1,0 +1,56 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+
+<dom-module id="teacher-education">
+ <template>
+     <style>
+        google-chart {
+          height: 300px;
+          width: 50em;
+        }
+      </style>
+
+      <google-chart
+        type='column'
+        options='{"title": "ข้อมูลการศึกษาของบุคลากรในแต่ละกลุ่มสาระการเรียนรู้"}'
+        data='[["กลุ่มสาระการเรียนรู้", "ปริญญาตรี", "ปริญญาโท","ปริญญาเอก"],
+          ["คณิตศาสตร์", 10, 6, 4],
+          ["ภาษาไทย", 15, 3, 2],
+          ["วิทยาศาสตร์", 7, 10, 3],
+          ["สังคม", 12, 7, 1]]'>
+    </google-chart>
+ </template>
+ <script>
+   class TeacherEducation extends Polymer.Element {
+     static get is() {
+       return 'teacher-education';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherEducation.is,TeacherEducation);
+ </script>
+</dom-module>
