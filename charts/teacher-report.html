@@ -6,6 +6,8 @@
 <link rel="import" href="teacher-education.html">
 <link rel="import" href="teacher-type-report.html">
 <link rel="import" href="teacher-age.html">
+<link rel="import" href="teacher-sub-training.html">
+<link rel="import" href="teacher-training.html">
 
 <dom-module id="teacher-report">
   <template>
@@ -22,6 +24,10 @@
       </div>
        <div class="layout horizontal">
         <teacher-education></teacher-education>
+      </div>
+      <div class="layout horizontal">
+        <div class="flex-5"><teacher-sub-training></teacher-training></div>
+        <div class="flex-5"><teacher-training></teacher-training></div>
       </div>
     </div>
   </template>

@@ -1,0 +1,64 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+
+<dom-module id="teacher-sub-training">
+ <template>
+     <style>
+        google-chart {
+          height: 300px;
+          width: 50em;
+        }
+      </style>
+
+    <google-chart
+      type='column'
+      options='{"title": "ข้อมูลแสดงการ อบรม สัมมนาของบุคลากรกลุ่มสาระการเรียนรู้คณิตศาสตร์ ปี 2016"}'
+      data='[["เดือน", "อบรม", "สัมมนา"],
+        ["ม.ค.", 5, 7],
+        ["ก.พ.", 14, 5],
+        ["มี.ค.", 8, 12],
+        ["เม.ย.", 15, 8],
+        ["พ.ค.", 5, 7],
+        ["มิ.ย.", 14, 5],
+        ["ก.ค.", 8, 12],
+        ["ส.ค.", 15, 8],
+        ["ก.ย", 5, 7],
+        ["ต.ค.", 14, 5],
+        ["พ.ย.", 8, 12],
+        ["ธ.ค.", 15, 8]]'>
+    </google-chart>
+ </template>
+ <script>
+   class TeacherSubTraining extends Polymer.Element {
+     static get is() {
+       return 'teacher-sub-training';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherSubTraining.is,TeacherSubTraining);
+ </script>
+</dom-module>
