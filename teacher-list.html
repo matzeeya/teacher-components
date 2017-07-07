@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../iron-ajax/iron-request.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="secret-component.html">
+
+<dom-module id="teacher-list">
+ <template>
+   <secret-component token="{{token}}"></secret-component>
+   <!--
+   <app-localstorage-document key="token" data="{{token}}">
+   </app-localstorage-document>
+   -->
+   <paper-listbox selected="{{selected}}" attr-for-selected="name" 
+     on-iron-select="_onSelected">
+    <template is="dom-repeat" items="{{items}}">
+      <paper-item name="{{item.id}}">
+        {{item.first_name}} {{item.last_name}}
+      </paper-item>
+    </template>
+   </paper-listbox>
+ </template>
+
+ <script>
+   class TeacherList extends Polymer.Element {
+     static get is() {
+       return 'teacher-list';
+     }
+    
+     static get properties() {
+       return {
+         hostId:{
+           type:String
+         },
+         selected:{
+           type:String,
+           notify:true
+         }
+       }
+     }
+
+     static get observers() {
+       return [
+         '_executeListByHostId(hostId)',
+       ];
+     }
+
+     _onSelected(event) {
+       console.log(this.selected);
+       this.dispatchEvent(new CustomEvent('selected', {
+        detail: {id: this.selected}}
+      ));
+     }
+
+     _executeListByHostId(hostid) {
+       var ele = document.createElement('iron-request');
+       var _self = this;
+       ele.send({
+         url:'https://maas.nuqlis.com:9000/api/query/teacher_db/hostid',
+         method:'POST',
+         headers:{
+           'Authorization':'JWT '+this.token.token,
+           'Content-Type':'application/json'
+         },
+         handleAs:'json',
+         body:{'match':[hostid],'limit':-1}
+       }).then(function(res) {
+         var items = [];
+         res.response.forEach(function(it) {
+           if(!it.key[2][0].match(/\d+/g)) {
+             items.push({'id':it.value,
+               'first_name':it.key[2][0],
+               'last_name':it.key[2][1]
+             });
+           }
+         });
+         _self.set('items',items);
+       });
+     }
+   }
+   
+   customElements.define(TeacherList.is,TeacherList);
+ </script>
+</dom-module>

@@ -37,11 +37,11 @@
       }
       
     </style>
-    <teacher-query doc-id="4818e800617111e7a88349361eb0cdc5"
-      id="teacherDoc"
-      document="{{doc}}">
+    <teacher-query doc-id="{{docId}}" id="teacherDoc" document="{{doc}}">
     </teacher-query>
-    <paper-button on-click="save" raised>Save</paper-button>
+
+    <paper-button class="margin-bottom-style" on-click="save" raised>Save</paper-button>
+
 
     <div class="layout vertical">
       <div class="layout horizontal">
@@ -83,10 +83,10 @@
       static get is() { return 'teacher-form';}
       static get properties() {
         return {
-          /*prop1: {
+          docId: {
             type: String,
-            value: 'teachers'
-          }*/
+            notify:true
+          }
         };
       }
       
