@@ -37,7 +37,11 @@
     
     <div class="layout vertical" hidden$="{{!content.show}}">
         <div class="layout horizontal">
-          <div class="flex-3 margin-left-style"><paper-input label="ปีที่จบ"></paper-input></div>
+          <div class="flex-3 margin-left-style">
+           <paper-input label="ปีที่จบ"
+             value="{{content.year}}">
+           </paper-input>
+          </div>
           <div class="flex-5 margin-left-style"><paper-input label="ระดับการศึกษา"></paper-input></div>
           <div class="flex-7 margin-left-style"><paper-input label="สาขาวิชา"></paper-input></div>
           <div class="flex-8 margin-left-style"><paper-input label="สถานศึกษา"></paper-input></div>
@@ -56,7 +60,10 @@
     Polymer({
       is: 't-education',
       properties: {        
-          content:Object
+         content:{
+           type:Object,
+           notify:true
+         }
       },
       _removeItem:function(event) {
         this.set('content.show',false);
