@@ -2,25 +2,25 @@
 <link rel="import" href="../../google-chart/google-chart.html">
 <link rel="import" href="../../highcharts-chart/highcharts-chart.html">
 
-<dom-module id="teacher-age">
+<dom-module id="test-bar">
  <template>
    <style>
-     highcharts-chart {height: 25em}
+     highcharts-chart { width:300px;,height:200px; }
    </style>
    
-   <highcharts-chart type="pie"
-     id="myChart"
+   <highcharts-chart type="bar" 
+    id="myChart"
      title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
      color-by-point  
-     label="จำนวน"
+     label={{this.data.name}}
      data="{{data}}">
    </highcharts-chart>
 
  </template>
  <script>
-   class TeacherAge extends Polymer.Element {
+   class TestBar extends Polymer.Element {
      static get is() {
-       return 'teacher-age';
+       return 'test-bar';
      }
     
      static get properties() {
@@ -29,12 +29,13 @@
            type:Array,
            notify:true,
            value:function() {
-             return [
-               {'name':"20-30 ปี",'y':22},
-               {'name':"31-40 ปี",'y':32},
-               {'name':"41-50 ปี",'y':15},
-               {'name':"51-60 ปี",'y':3}
-             ];
+             return [{
+                  name: 'ชาย',
+                  data: [5, -3, 4, -7, 2]
+              }, {
+                  name: 'หญิง',
+                  data: [2, -2, 3, -2, 1]
+              }];
            }
          },
          token:{
@@ -49,13 +50,13 @@
     
     ready() {
         super.ready();
-        console.log('ok 123');
+        console.log(this.data);
     }
 
      _handleResponse(event) {
        this.set('document',event.detail.response);
      }          
    }   
-   customElements.define(TeacherAge.is,TeacherAge);
+   customElements.define(TestBar.is,TestBar);
  </script>
 </dom-module>
