@@ -1,22 +1,21 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../google-chart/google-chart.html">
+<link rel="import" href="../../highcharts-chart/highcharts-chart.html">
 
 <dom-module id="teacher-age">
  <template>
-     <style>
-        google-chart {
-          height: 300px;
-          width: 50em;
-        }
-      </style>
+   <style>
+     highcharts-chart {height: 25em}
+   </style>
 
-    <google-chart
-      type='pie'
-      options='{"title": "ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"}'
-      cols='[{"label":"ช่วงอายุ", "type":"string"}, {"label":"จำนวน", "type":"number"}]'
-      rows='[["20-30 ปี", 22],["31-40 ปี", 32],["41-50 ปี", 15],
-        ["51-60 ปี", 3]]'>
-    </google-chart>
+   <highcharts-chart type="pie"
+     id="myChart"
+     title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
+     color-by-point  
+     label="จำนวน"
+     data="{{data}}">
+   </highcharts-chart>
+
  </template>
  <script>
    class TeacherAge extends Polymer.Element {
@@ -26,9 +25,17 @@
     
      static get properties() {
        return {
-         docId:{
-           type:String,
-           notify:true
+         data:{
+           type:Array,
+           notify:true,
+           value:function() {
+             return [
+               {'name':"20-30 ปี",'y':22},
+               {'name':"31-40 ปี",'y':32},
+               {'name':"41-50 ปี",'y':15},
+               {'name':"51-60 ปี",'y':3}
+             ];
+           }
          },
          token:{
            type:String
