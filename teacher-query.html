@@ -1,11 +1,16 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-ajax/iron-request.html">
+<link rel="import" href="secret-component.html">
 
 <dom-module id="teacher-query">
  <template>
+   <secret-component token="{{token}}"></secret-component>
+   <!--
    <app-localstorage-document key="token" data="{{token}}">
    </app-localstorage-document>
+   -->
    <iron-ajax  id="getAjax" method="GET" handle-as="json">
    </iron-ajax>
    <iron-ajax  id="saveAjax" method="POST" handle-as="json">
@@ -27,6 +32,9 @@
          token:{
            type:String
          },
+         hostId:{
+           type:String
+         },
          document:{
            type:Object,
            notify:true
@@ -36,15 +44,15 @@
 
      static get observers() {
        return [
-         '_getDocument(token,docId)'
+         '_getDocument(docId)'
        ];
      }
 
-     _getDocument(token,docId) {
-       if(token == null || docId == null) return;
+     _getDocument(docId) {
+       if(this.token == null || docId == null) return;
        this.$.getAjax.url = 'https://maas.nuqlis.com:9000/api/dbs/teacher_db/'+docId;
        this.$.getAjax.headers = {
-         'Authorization':'JWT '+token.token
+         'Authorization':'JWT '+this.token.token
        };
        this.$.getAjax.generateRequest();
        var _self = this;
@@ -52,7 +60,7 @@
          _self.set('document',event.detail.response);
        });
      }
-   
+
      save() {
        this.$.saveAjax.url = 'https://maas.nuqlis.com:9000/api/dbs/teacher_db/'+this.docId;
        this.$.saveAjax.headers = {

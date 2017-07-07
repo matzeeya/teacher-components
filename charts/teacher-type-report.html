@@ -1,0 +1,54 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+
+<dom-module id="teacher-type-report">
+ <template>
+     <style>
+        google-chart {
+          height: 300px;
+          width: 50em;
+        }
+      </style>
+
+    <google-chart
+      type='pie'
+      options='{"title": "ข้อมูลแสดงประเภทบุคลากรภายในโรงเรียน"}'
+      cols='[{"label":"ประเภท", "type":"string"}, {"label":"จำนวน", "type":"number"}]'
+      rows='[["ข้าราชการครู", 22],["ข้าราชการพลเรือนสามัญ", 14],["พนักงานของรัฐ", 8],
+        ["ลูกจ้างประจำ", 3],["ลูกจ้างชั่วคราว", 1],["อื่นๆ", 1]]'>
+    </google-chart>
+ </template>
+ <script>
+   class TeacherTypeReport extends Polymer.Element {
+     static get is() {
+       return 'teacher-type-report';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherTypeReport.is,TeacherTypeReport);
+ </script>
+</dom-module>

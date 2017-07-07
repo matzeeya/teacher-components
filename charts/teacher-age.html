@@ -1,0 +1,54 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../google-chart/google-chart.html">
+
+<dom-module id="teacher-age">
+ <template>
+     <style>
+        google-chart {
+          height: 300px;
+          width: 50em;
+        }
+      </style>
+
+    <google-chart
+      type='pie'
+      options='{"title": "ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"}'
+      cols='[{"label":"ช่วงอายุ", "type":"string"}, {"label":"จำนวน", "type":"number"}]'
+      rows='[["20-30 ปี", 22],["31-40 ปี", 32],["41-50 ปี", 15],
+        ["51-60 ปี", 3]]'>
+    </google-chart>
+ </template>
+ <script>
+   class TeacherAge extends Polymer.Element {
+     static get is() {
+       return 'teacher-age';
+     }
+    
+     static get properties() {
+       return {
+         docId:{
+           type:String,
+           notify:true
+         },
+         token:{
+           type:String
+         },
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+    
+    ready() {
+        super.ready();
+        console.log('ok 123');
+    }
+
+     _handleResponse(event) {
+       this.set('document',event.detail.response);
+     }          
+   }   
+   customElements.define(TeacherAge.is,TeacherAge);
+ </script>
+</dom-module>

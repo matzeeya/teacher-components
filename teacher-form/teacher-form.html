@@ -21,71 +21,25 @@
         display: block;
         box-sizing: border-box;
       }
-      
-      .header {
-        @apply(--paper-font-caption);
-        background-color: #F44336;
-        text-align:left;
-        color: #fff;
-        opacity: 0.87;
-        height:56px;
-      }
-      .caption {
-        @apply(--paper-font-title);
-        text-align:left;
-        color: #000;
-        opacity: 0.64;
-        height:64px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .content {
-        @apply(--paper-font-menu);
-        text-align:left;
-        color: #000;
-        opacity: 0.87;
-        height:48px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
+
       .margin-left-style{
-        margin-left:24px;
+        margin-left:5px;
       }
-      .margin-right-style{
-        margin-right:24px;
+      .margin-bottom-style{
+         margin-bottom: 30px;
       }
-      .shadow {
-        @apply(--shadow-elevation-2dp);
-      }
+    /* ---font---- */
       .font-header {
         font-family: 'Itim', cursive;
         font-size: 120%;
         font-weight: bold;
-        height:48px;
+        height:20px;
       }
-    /* ---font---- */
-      .font-face-big {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        text-decoration: underline;
-      }
-      .font-face-big-bold {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        font-weight: bold;
-      }
-      .font-face {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-      }
+      
     </style>
-    <teacher-query doc-id="4818e800617111e7a88349361eb0cdc5"
-      id="teacherDoc"
-      document="{{doc}}">
+    <teacher-query doc-id="{{docId}}" id="teacherDoc" document="{{doc}}">
     </teacher-query>
-    <paper-button on-click="save" raised>Save</paper-button>
+    <paper-button class="margin-bottom-style" on-click="save" raised>Save</paper-button>
 
     <div class="layout vertical">
       <div class="layout horizontal">
@@ -97,21 +51,19 @@
       <div class="layout horizontal">
         <div class="flex-3"><paper-input label="คำนำหน้า" 
           value="{{doc.Title}}"></paper-input></div>
-        <div class="flex-5">
+        <div class="flex-5 margin-left-style">
           <paper-input label="ชื่อ" 
              value="{{doc.Firstname}}">
           </paper-input>
         </div>
-        <div class="flex-7"><paper-input label="นามสกุล" value="{{lname}}"></paper-input></div>
+        <div class="flex-7 margin-left-style"><paper-input label="นามสกุล" value="{{lname}}"></paper-input></div>
       </div>
       <div class="layout horizontal">
+
         <div class="flex-7"><paper-input label="โรงเรียน" value="{{school}}"></paper-input></div>
         <div class="flex-3"><paper-input label="จังหวัด" value="{{province}}"></paper-input></div>
       </div>
-
-      <div class="layout horizontal">
-        <div class="flex font-header center-layout">2. ประเภทบุคลากร</div>
-      </div>
+      
       <div class="layout horizontal">
         <teacher-type value="{{doc.employment_type}}"></teacher-type>  
       </div>
@@ -129,10 +81,10 @@
       static get is() { return 'teacher-form';}
       static get properties() {
         return {
-          /*prop1: {
+          docId: {
             type: String,
-            value: 'teachers'
-          }*/
+            notify:true
+          }
         };
       }
       

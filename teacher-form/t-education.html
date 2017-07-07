@@ -1,4 +1,4 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
 <link rel="import" href="../../paper-button/paper-button.html">
@@ -10,113 +10,46 @@
 
 <dom-module id="t-education">
   <template>
-    <style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors">
       :host {
         display: block;
         box-sizing: border-box;
       }
-      .center-layout{
-        @apply(--layout-center);
-        @apply(--layout); 
-        /*@apply(--layout-center-justified);*/
-      }
-      .horizontal {
-        @apply(--layout-horizontal);
-      }
-      .vertical {
-        @apply(--layout-vertical);
-      }
-      .flex-2 {
-        @apply(--layout-flex-2); 
-      }
-      .flex-3 {
-        @apply(--layout-flex-3); 
-      }
-      .flex-5 {
-        @apply(--layout-flex-5); 
-      }
-      .flex-7 {
-        @apply(--layout-flex-7); 
-      }
-      .flex-8 {
-        @apply(--layout-flex-8); 
-      }
-      .flex-10 {
-        @apply(--layout-flex-10); 
-      } 
-      .header {
-        @apply(--paper-font-caption);
-        text-align:left;
-        color: #000;
-        opacity: 0.64;
-        height:56px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .caption {
-        @apply(--paper-font-title);
-        text-align:left;
-        color: #000;
-        opacity: 0.64;
-        height:64px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
-      .content {
-        @apply(--paper-font-menu);
-        text-align:left;
-        color: #000;
-        opacity: 0.87;
-        height:48px;
-        border-bottom-width:1px;
-        border-bottom-style:solid;
-        border-bottom-color: var(--divider-color);
-      }
       .margin-left-style{
-        margin-left:24px;
-      }
-      .margin-right-style{
-        margin-right:24px;
-      }
-      .shadow {
-        @apply(--shadow-elevation-2dp);
+        margin-left:5px;
       }
     /* ---font---- */
-      .font-face-big {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        text-decoration: underline;
-      }
-      .font-face-big-bold {
-        font-family: 'Itim', cursive;
-        font-size: 120%;
-        font-weight: bold;
-      }
       .font-face {
         font-family: 'Itim', cursive;
         font-size: 90%;
       }
+      .box{
+        height:20px;
+        margin-top: 5px;
+      }
+      .margin-bottom{
+        margin-top: 20px;
+      }
+      paper-icon-button {
+        max-width: 35px;
+      }
     </style>    
     
-    <div class="vertical" hidden$="{{!content.show}}">
-        <div class="horizontal">
-          <div class="flex-3"><paper-input label="ปีที่จบ"></paper-input></div>
-          <div class="flex-5"><paper-input label="ระดับการศึกษา"></paper-input></div>
-          <div class="flex-7"><paper-input label="สาขาวิชา"></paper-input></div>
-          <div class="flex-10"><paper-input label="สถานศึกษา"></paper-input></div>
-          <div class="flex-3">
-            <paper-checkbox>เกียรตินิยมอันดับ 1</paper-checkbox><br><br>
-            <paper-checkbox>เกียรตินิยมอันดับ 2</paper-checkbox>
+    <div class="layout vertical" hidden$="{{!content.show}}">
+        <div class="layout horizontal">
+          <div class="flex-3 margin-left-style"><paper-input label="ปีที่จบ"></paper-input></div>
+          <div class="flex-5 margin-left-style"><paper-input label="ระดับการศึกษา"></paper-input></div>
+          <div class="flex-7 margin-left-style"><paper-input label="สาขาวิชา"></paper-input></div>
+          <div class="flex-8 margin-left-style"><paper-input label="สถานศึกษา"></paper-input></div>
+          <div class="flex-4 font-face margin-left-style">
+            <div class="box"><paper-checkbox>เกียรตินิยมอันดับ 1</paper-checkbox></div>
+            <div class="box"><paper-checkbox>เกียรตินิยมอันดับ 2</paper-checkbox></div>
           </div>
-          <div class="flex-2">
-            <br><paper-icon-button icon="icons:delete" on-click="_removeItem"></paper-icon-button>
+          <div class="flex-3 margin-bottom">
+            <paper-icon-button src="../images/delete.png" on-click="_removeItem"></paper-icon-button>
           </div>  
         </div>
     </div>
-    
-
   </template>
 
   <script>
