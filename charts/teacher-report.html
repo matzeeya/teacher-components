@@ -3,6 +3,7 @@
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../google-chart/google-chart.html">
 <link rel="import" href="teacher-per-student.html">
+<link rel="import" href="teacher-week.html">
 <link rel="import" href="teacher-education.html">
 <link rel="import" href="teacher-type-report.html">
 <link rel="import" href="teacher-age.html">
@@ -18,6 +19,7 @@
       }
   </style>
     <div class="layout vertical">
+      <teacher-age></teacher-age>
       <div class="layout horizontal">
         <div class="flex-5"><teacher-age></teacher-age></div>
         <div class="flex-5"><teacher-type-report></teacher-type-report></div>
@@ -31,6 +33,9 @@
       </div>
       <div class="layout horizontal">
         <teacher-per-student></teacher-per-student>
+      </div>
+      <div class="layout horizontal">
+        <teacher-week></teacher-week>
       </div>
     </div>
   </template>

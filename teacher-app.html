@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="./teacher-form/teacher-form.html">
+<link rel="import" href="./charts/teacher-report.html">
+<link rel="import" href="./teacher-list.html">
+
+<dom-module id="teacher-app">
+ <template>
+   <paper-tabs selected="{{tab}}">
+    <paper-tab>ข้อมูลครู</paper-tab>
+    <paper-tab>แบบฟอร์ม</paper-tab>
+    <paper-tab>รายงาน</paper-tab>
+   </paper-tabs>
+
+   <iron-pages selected="{{tab}}">
+     <teacher-list host-id="1067380112" selected="{{docId}}" 
+       on-selected="_onTeacherSelected">
+     </teacher-list>
+     <teacher-form doc-id="{{docId}}"></teacher-form>
+     <teacher-report></teacher-report>
+   </iron-pages>
+ </template>
+
+ <script>
+   class TeacherApp extends Polymer.Element {
+     static get is() {
+       return 'teacher-app';
+     }
+    
+     static get properties() {
+       return {
+         document:{
+           type:Object,
+           notify:true
+         }
+       }
+     }
+
+     _onTeacherSelected(event) {
+       this.set('tab',1);
+     }
+   }
+   
+   customElements.define(TeacherApp.is,TeacherApp);
+ </script>
+</dom-module>
