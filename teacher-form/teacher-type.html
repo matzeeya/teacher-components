@@ -1,7 +1,7 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../paper-material/paper-material.html">
 <link rel="import" href="../../paper-input/paper-input.html">
-<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 
 <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
@@ -35,26 +35,13 @@
       <div class="layout horizontal">
         <div class="flex font-header">2. ประเภทบุคลากร</div>
       </div>
-      <div class="layout vertical">
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">ข้าราชการครู</paper-checkbox></div>
-        </div>
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">ข้าราชการพลเรือนสามัญ</paper-checkbox></div>
-        </div>
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">พนักงานของรัฐ</paper-checkbox></div>
-        </div>
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">ลูกจ้างประจำ</paper-checkbox></div>
-        </div>
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">ลูกจ้างชั่วคราว</paper-checkbox></div>
-        </div>
-        <div class="layout horizontal">
-          <div><paper-checkbox class="font-face margin-style">อื่น ๆ</paper-checkbox></div>
-          <paper-input class="margin-left-style" label="โปรดระบุ..." value="{{etc}}"></paper-input>
-        </div>
+      <div class="layout horizontal">
+
+         <paper-radio-group aria-labelledby="label1" selected="{{document.value.form_value.q1}}">
+             <paper-radio-button name="a" class ="font-face-normal" >ข้าราชการครู</paper-radio-button>
+             <paper-radio-button name="b"class ="font-face-normal">ข้าราชการพลเรือนสามัญ</paper-radio-button>
+             <paper-radio-button name="c"class ="font-face-normal">ลูกจ้างชั่วคราว</paper-radio-button>
+           </paper-radio-group>
       </div>
   </template>
 
