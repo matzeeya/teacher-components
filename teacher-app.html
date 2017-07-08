@@ -7,7 +7,16 @@
 
 <dom-module id="teacher-app">
  <template>
-   <paper-tabs selected="{{tab}}">
+   <style>
+    /* ---tabs---- */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: #F44336;
+        background-color: var(--paper-grey-50);
+        height: 40px;
+      }
+  </style>
+  
+   <paper-tabs selected="{{tab}}" noink>
     <paper-tab>ข้อมูลครู</paper-tab>
     <paper-tab>แบบฟอร์ม</paper-tab>
     <paper-tab>รายงาน</paper-tab>
@@ -33,7 +42,11 @@
          document:{
            type:Object,
            notify:true
-         }
+         },
+        tab: {
+          type: Number,
+          value: 1
+        }
        }
      }
 

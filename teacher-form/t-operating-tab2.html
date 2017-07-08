@@ -31,6 +31,12 @@
       paper-icon-button {
         max-width: 35px;
       }
+      paper-listbox{
+        width: 250px; 
+      }
+      paper-dropdown-menu{
+        width:250px;
+      }
     </style>    
     
     <div class="layout vertical" hidden$="{{!content.show}}">
@@ -44,7 +50,7 @@
               </paper-listbox>
             </paper-dropdown-menu>
             </div>
-            <div class="flex-5 margin-left-style"><paper-input label="รายวิชา"></paper-input></div>
+            <div class="flex-7 margin-left-style"><paper-input label="รายวิชา"></paper-input></div>
             <div class="flex-3 margin-left-style">
             <paper-dropdown-menu label="ระดับชั้น">
               <paper-listbox  slot="dropdown-content">

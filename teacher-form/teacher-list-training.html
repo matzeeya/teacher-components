@@ -6,6 +6,9 @@
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../iron-pages/iron-pages.html">
 <link rel="import" href="t-training.html">
+<link rel="import" href="t-training-tab2.html">
+<link rel="import" href="t-training-tab3.html">
+<link rel="import" href="t-training-tab4.html">
 
 <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
 
@@ -43,6 +46,9 @@
           <div class="font-face-big-bold">การอบมรม/สัมมนา</div>
         </paper-tab>
         <paper-tab>
+          <div class="font-face-big-bold">การเป็นวิทยากร</div>
+        </paper-tab>
+        <paper-tab>
           <div class="font-face-big-bold">รางวัลที่ได้รับ</div>
         </paper-tab>
         <paper-tab>
@@ -57,8 +63,24 @@
             <t-training content="{{item}}" on-t-training-remove="_removeItem"></t-training>
           </template>
         </div>
-        <div>กำลังดำเนินการ</div>
-        <div>กำลังดำเนินการ</div>
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button> 
+          <template is="dom-repeat" items="{{list}}">
+            <t-training-tab2 content="{{item}}" on-t-training-tab2-remove="_removeItem"></t-training-tab2>
+          </template>
+        </div>
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button> 
+          <template is="dom-repeat" items="{{list}}">
+            <t-training-tab3 content="{{item}}" on-t-training-tab3-remove="_removeItem"></t-training-tab3>
+          </template>
+        </div>
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button> 
+          <template is="dom-repeat" items="{{list}}">
+            <t-training-tab4 content="{{item}}" on-t-training-tab4-remove="_removeItem"></t-training-tab4>
+          </template>
+        </div>
       </iron-pages>
   </template>
 

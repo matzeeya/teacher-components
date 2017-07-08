@@ -7,6 +7,8 @@
 <link rel="import" href="../../iron-pages/iron-pages.html">
 <link rel="import" href="t-operating.html">
 <link rel="import" href="t-operating-tab2.html">
+<link rel="import" href="t-operating-tab3.html">
+<link rel="import" href="t-operating-tab4.html">
 
 <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
 
@@ -60,12 +62,28 @@
             <t-operating content="{{item}}" on-t-operating-remove="_removeItem"></t-operating>
           </template>
         </div>
-        <div><paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
+        <div>
+          <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
           <template is="dom-repeat" items="{{list}}">
             <t-operating-tab2 content="{{item}}" on-t-operating-tab2-remove="_removeItem"></t-operating-tab2>
-          </template></div>
-        <div>กำลังดำเนินการ</div>
-        <div>กำลังดำเนินการ</div>
+          </template>
+        </div>
+        <div>
+          <div>
+            <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
+            <template is="dom-repeat" items="{{list}}">
+              <t-operating-tab3 content="{{item}}" on-t-operating-tab3-remove="_removeItem"></t-operating-tab3>
+            </template>
+          </div>
+        </div>
+        <div>
+          <div>
+            <paper-button raised on-click="_addItem">+ เพิ่ม</paper-button>       
+            <template is="dom-repeat" items="{{list}}">
+              <t-operating-tab4 content="{{item}}" on-t-operating-tab4-remove="_removeItem"></t-operating-tab4>
+            </template>
+          </div>
+        </div>
       </iron-pages>
   </template>
 
