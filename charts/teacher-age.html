@@ -5,13 +5,26 @@
 <dom-module id="teacher-age">
  <template>
    <style>
-      highcharts-chart{
-        width: 550px;
-        height: 250px;
+      google-chart{
+        width: 650px;
+        height: 300px;
       }
      </style>
-   
-   <highcharts-chart 
+
+   <google-chart
+      type='column'
+      options='{"title": "ข้อมูลแสดงระดับการศึกษาของบุคลากรในแต่ละกลุ่มสาระการเรียนรู้"}'
+      data='[["ช่วงอายุ", "ชาย","หญิง"],
+        ["20-25 ปี", 10, 15],
+        ["26-30 ปี", 20, 24],
+        ["31-35 ปี", 25, 15],
+        ["36-40 ปี", 32, 22],
+        ["41-45 ปี", 12, 14],
+        ["46-50 ปี", 23, 32],
+        ["51-55 ปี", 15, 8],
+        ["56-60 ปี", 5, 3]]'>
+    </google-chart>
+   <!--<highcharts-chart 
     type="column" 
     id="myChart"
     title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
@@ -22,7 +35,7 @@
     y-label="จำนวน">
   </highcharts-chart>
 
-   <!--<highcharts-chart type="pie"
+   <highcharts-chart type="pie"
      id="myChart"
      title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
      color-by-point  
@@ -39,7 +52,7 @@
     
      static get properties() {
        return {
-         data:{
+          /*data:{
            type:Array,
            notify:true,
            value:function() {
@@ -49,7 +62,7 @@
               {"name": "หญิง", 
                 "data": [15, 24, 15, 22, 14, 32, 8, 3]}
              ];
-             /*return [
+            return [
                {'name':"20-25 ปี",'y':15},
                {'name':"26-30 ปี",'y':32},
                {'name':"31-35 ปี",'y':22},
@@ -58,9 +71,9 @@
                {'name':"46-50 ปี",'y':8},
                {'name':"51-55 ปี",'y':12},
                {'name':"56-60 ปี",'y':5}
-             ];*/
+             ];
            }
-         },
+         },*/
          token:{
            type:String
          },
