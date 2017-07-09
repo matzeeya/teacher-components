@@ -31,12 +31,19 @@
       paper-icon-button {
         max-width: 35px;
       }
+      paper-listbox{
+        width:350px; 
+      }
+      paper-dropdown-menu{
+        width:350px;
+      }
+     
     </style>    
     
     <div class="layout vertical" hidden$="{{!content.show}}">
         <div class="layout horizontal">
-          <div class="flex-3 margin-left-style"><paper-input label="ปีการศึกษา"></paper-input></div>
-          <div class="flex-3 margin-left-style">
+          <div class="flex-5 margin-left-style"><paper-input label="ปีการศึกษา"></paper-input></div>
+          <div class="flex-5 margin-left-style">
             <paper-dropdown-menu label="ภาคเรียนที่">
               <paper-listbox slot="dropdown-content">
                 <paper-item>ภาคเรียนที่ 1</paper-item>
@@ -44,9 +51,9 @@
               </paper-listbox>
             </paper-dropdown-menu>
             </div>
-            <div class="flex-3 margin-left-style">
+            <div class="flex-5 margin-left-style">
             <paper-dropdown-menu label="ระดับชั้น">
-              <paper-listbox  slot="dropdown-content">
+              <paper-listbox slot="dropdown-content">
                 <paper-item>ประถมศึกษาปีที่ 1</paper-item>
                 <paper-item>ประถมศึกษาปีที่ 2</paper-item>
                 <paper-item>ประถมศึกษาปีที่ 3</paper-item>
@@ -62,7 +69,7 @@
               </paper-listbox>
             </paper-dropdown-menu>
             </div>
-          <div class="flex-3 margin-left-style"><paper-input label="ห้อง"></paper-input></div>
+          <div class="flex-5 margin-left-style"><paper-input label="ห้อง"></paper-input></div>
           <div class="flex-3 margin-bottom">
             <paper-icon-button src="../images/delete.png" on-click="_removeItem"></paper-icon-button>
           </div>  

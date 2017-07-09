@@ -5,12 +5,29 @@
 <link rel="import" href="./charts/teacher-report.html">
 <link rel="import" href="./teacher-list.html">
 
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
 <dom-module id="teacher-app">
  <template>
-   <paper-tabs selected="{{tab}}">
-    <paper-tab>ข้อมูลครู</paper-tab>
-    <paper-tab>แบบฟอร์ม</paper-tab>
-    <paper-tab>รายงาน</paper-tab>
+   <style>
+    /* ---tabs---- */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: #F44336;
+        background-color: var(--paper-grey-50);
+        height: 40px;
+      }
+      /* ---font---- */
+      .font-face-big-bold {
+        font-family: 'Itim', cursive;
+        font-size: 100%;
+        font-weight: bold;
+      }
+  </style>
+  
+   <paper-tabs selected="{{tab}}" noink >
+    <paper-tab class="font-face-big-bold">ข้อมูลครู</paper-tab>
+    <paper-tab class="font-face-big-bold">แบบฟอร์ม</paper-tab>
+    <paper-tab class="font-face-big-bold">รายงาน</paper-tab>
    </paper-tabs>
 
    <iron-pages selected="{{tab}}">
@@ -33,7 +50,11 @@
          document:{
            type:Object,
            notify:true
-         }
+         },
+        /*tab: {
+          type: Number,
+          value: 2
+        }*/
        }
      }
 

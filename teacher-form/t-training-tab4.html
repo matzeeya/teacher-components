@@ -1,0 +1,57 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
+<dom-module id="t-training-tab4">
+  <template>
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors">
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+      .margin-left-style{
+        margin-left:5px;
+      }
+    /* ---font---- */
+      .font-face {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+      }
+      .margin-bottom{
+        margin-top: 20px;
+      }
+      paper-icon-button {
+        max-width: 35px;
+      }
+    </style>    
+
+    <div class="layout vertical" hidden$="{{!content.show}}">
+        <div class="layout horizontal">
+          <div class="flex-3 margin-left-style"><paper-input label="ปี พ.ศ."></paper-input></div>
+          <div class="flex-7 margin-left-style"><paper-input label="ชื่อผลงาน"></paper-input></div>
+            <div class="flex-7 margin-left-style"><paper-input label="หน่วยงานที่มอบรางวัล"></paper-input></div>
+          <div class="flex-3 margin-left-style margin-bottom"><paper-button raised>เอกสารอ้างอิง</paper-button></div>
+          <div class="flex-3 margin-bottom">
+            <paper-icon-button src="../images/delete.png" on-click="_removeItem"></paper-icon-button>
+          </div>  
+        </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 't-training-tab4',
+      properties: {        
+          content:Object,
+      },
+      _removeItem:function(event) {
+        this.set('content.show',false);
+        this.fire('t-training-tab4-remove',{'obj':this});
+      }
+    });
+  </script>
+</dom-module>

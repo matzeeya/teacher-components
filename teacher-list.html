@@ -5,8 +5,24 @@
 <link rel="import" href="../paper-listbox/paper-listbox.html">
 <link rel="import" href="secret-component.html">
 
+<link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+
 <dom-module id="teacher-list">
  <template>
+   <style>
+    /* ---tabs---- */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: #F44336;
+        background-color: var(--paper-grey-50);
+        height: 40px;
+      }
+      /* ---font---- */
+      .font-face-big {
+        font-family: 'Itim', cursive;
+        font-size: 120%;
+      }
+  </style>
+
    <secret-component token="{{token}}"></secret-component>
    <!--
    <app-localstorage-document key="token" data="{{token}}">
@@ -15,7 +31,7 @@
    <paper-listbox selected="{{selected}}" attr-for-selected="name" 
      on-iron-select="_onSelected">
     <template is="dom-repeat" items="{{items}}">
-      <paper-item name="{{item.id}}">
+      <paper-item class="font-face-big" name="{{item.id}}">
         {{item.first_name}} {{item.last_name}}
       </paper-item>
     </template>
