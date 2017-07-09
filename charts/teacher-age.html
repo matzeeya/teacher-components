@@ -5,16 +5,30 @@
 <dom-module id="teacher-age">
  <template>
    <style>
-     highcharts-chart {height: 25em}
-   </style>
+      highcharts-chart{
+        width: 550px;
+        height: 250px;
+      }
+     </style>
    
-   <highcharts-chart type="pie"
+   <highcharts-chart 
+    type="column" 
+    id="myChart"
+    title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
+    color-by-point
+    x-axis='{"categories": ["20-25 ปี","26-30 ปี","31-35 ปี","36-40 ปี","41-45 ปี","46-50 ปี","51-55 ปี","56-60 ปี"]}'
+    data="{{data}}"
+    x-label="ช่วงอายุ"
+    y-label="จำนวน">
+  </highcharts-chart>
+
+   <!--<highcharts-chart type="pie"
      id="myChart"
      title="ข้อมูลแสดงช่วงอายุของบุคลากรภายในโรงเรียน"
      color-by-point  
      label="จำนวน"
      data="{{data}}">
-   </highcharts-chart>
+   </highcharts-chart>-->
 
  </template>
  <script>
@@ -29,7 +43,13 @@
            type:Array,
            notify:true,
            value:function() {
-             return [
+             return[
+              {"name": "ชาย", "series":"ชาย",
+               "data": [10, 20, 25, 32, 12, 23, 15, 5]},
+              {"name": "หญิง", 
+                "data": [15, 24, 15, 22, 14, 32, 8, 3]}
+             ];
+             /*return [
                {'name':"20-25 ปี",'y':15},
                {'name':"26-30 ปี",'y':32},
                {'name':"31-35 ปี",'y':22},
@@ -38,7 +58,7 @@
                {'name':"46-50 ปี",'y':8},
                {'name':"51-55 ปี",'y':12},
                {'name':"56-60 ปี",'y':5}
-             ];
+             ];*/
            }
          },
          token:{
