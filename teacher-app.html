@@ -35,7 +35,11 @@
        on-selected="_onTeacherSelected">
      </teacher-list>
      <teacher-form doc-id="{{docId}}"></teacher-form>
-     <teacher-report></teacher-report>
+     <div>
+      <template is="dom-if" if="{{_isMatch(tab,2)}}">
+        <teacher-report></teacher-report>
+      </template>
+     </div>
    </iron-pages>
  </template>
 
@@ -56,6 +60,11 @@
           value: 2
         }*/
        }
+     }
+
+     _isMatch(a,b) {
+       console.log(a,b);
+       return a == b;
      }
 
      _onTeacherSelected(event) {
