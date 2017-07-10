@@ -3,14 +3,33 @@
 
 <dom-module id="teacher-type-report">
  <template>
-    
+      <style>
+      google-chart{
+        width: 700px;
+      }
+     </style>
 
-    <google-chart
+   <google-chart
+      type='column'
+      options='{"title": "ข้อมูลแสดงประเภทบุคลากรภายในโรงเรียน(แบ่งตามช่วงอายุ)"}'
+      data='[["ประเภท", "ข้าราชการครู","พนักงานของรัฐ","ลูกจ้างชั่วคราว"],
+        ["20-25 ปี", 3, 7,2],
+        ["26-30 ปี", 10,15,0],
+        ["31-35 ปี", 25, 15,0],
+        ["36-40 ปี", 32, 22,1],
+        ["41-45 ปี", 12, 1,0],
+        ["46-50 ปี", 23, 12,0],
+        ["51-55 ปี", 15, 8,0],
+        ["56-60 ปี", 5, 0,0]]'>
+    </google-chart>
+
+    <!--<google-chart
       type="pie"
       options='{"title": "ข้อมูลแสดงประเภทบุคลากรภายในโรงเรียน"}'
       cols='[{"label": "ประเภท", "type": "string"},{"label": "จำนวน", "type": "number"}]'
       rows='[["ข้าราชการครู", 35],["พนักงานของรัฐ", 22],["ลูกจ้างชั่วคราว", 3]]'>
-    </google-chart>
+    </google-chart>-->
+
  </template>
  <script>
    class TeacherTypeReport extends Polymer.Element {
