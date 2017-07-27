@@ -33,7 +33,11 @@
     
     <div class="layout vertical" hidden$="{{!content.show}}">
         <div class="layout horizontal">
-          <div class="flex-3 margin-left-style"><paper-input label="วันเดือนปี"></paper-input></div>
+          <div class="flex-3 margin-left-style">
+							<paper-input label="วันเดือนปี"
+							value="{{content.dates}}">
+							</paper-input>
+						</div>
           <div class="flex-5 margin-left-style"><paper-input label="ตำแหน่ง"></paper-input></div>
           <div class="flex-5 margin-left-style"><paper-input label="ระดับ"></paper-input></div>
           <div class="flex-10 margin-left-style"><paper-input label="หน่วยงานสังกัด"></paper-input></div>
@@ -49,7 +53,10 @@
     Polymer({
       is: 't-working',
       properties: {        
-          content:Object
+          content:{
+							type:Object,
+							notify:true
+					}
       },
       _removeItem:function(event) {
         this.set('content.show',false);
